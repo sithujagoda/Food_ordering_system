@@ -1,28 +1,26 @@
-use food_order;
-DELIMITER $$
+USE food_order;
 
-CREATE VIEW View_OrderDetails_With_Items AS
+CREATE OR REPLACE VIEW View_OrderDetails_With_Items AS
 SELECT
-od.OrderID,
-od.FooditemID,
-fi.ItemName,
-od.Quantity
+    od.OrderID,
+    od.FooditemID,
+    fi.name AS ItemName,
+    od.quantity
 FROM
-orderdetails od
+    orderdetails od
 JOIN
-fooditem fi ON od.FooditemID = fi.FooditemID;
+    fooditem fi ON od.FooditemID = fi.FooditemID;
+    
 
-DELIMITER ;
-
-DELIMITER $$
-
-CREATE VIEW View_Orders_Total_Quantity AS
+CREATE OR REPLACE VIEW View_Orders_Total_Quantity AS
 SELECT
-OrderID,
-SUM(Quantity) AS TotalQuantity
+    OrderID,
+    SUM(quantity) AS TotalQuantity
 FROM
-orderdetails
+    orderdetails
 GROUP BY
-OrderID;
+    OrderID;
 
-DELIMITER ;
+-- test    
+SELECT * FROM View_OrderDetails_With_Items;
+SELECT * FROM View_Orders_Total_Quantity;
