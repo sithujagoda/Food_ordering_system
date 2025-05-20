@@ -12,10 +12,6 @@ BEGIN
   END IF;
 END$$
 
-DELIMITER ;
-
-DELIMITER $$
-
 CREATE TRIGGER trg_check_quantity_before_update
 BEFORE UPDATE ON orderdetails
 FOR EACH ROW
@@ -28,18 +24,14 @@ END$$
 
 DELIMITER ;
 
+-- test
+-- INSERT INTO orderdetails (OrderID, FooditemID, quantity) VALUES ('O002', 'F006', 0); 
 
+-- INSERT INTO foodorder (OrderID, ST_ID, Order_date)
+-- VALUES ('O011', '21456', '2025-05-20');
 
-
-
-
-
-
-
-
-
-
-
+-- INSERT INTO orderdetails (OrderID, FooditemID, quantity)
+-- VALUES ('O011', 'F006', 1);
 
 
 
