@@ -2,32 +2,34 @@ USE food_order;
 
 DELIMITER $$
 
-CREATE PROCEDURE GetOrdersByCustomer
-    @CustomerID VARCHAR(10)
-AS
+CREATE PROCEDURE InsertOrderDetail(
+    IN oid VARCHAR(10),
+    IN fid VARCHAR(10),
+    IN qty INT
+)
 BEGIN
-    SELECT 
-        o.OrderID,
-        o.OrderDate,
-        o.Status
-    FROM 
-        foodorder o
-    WHERE 
-        o.CustomerID = @CustomerID;
-END;
+    INSERT INTO orderdetails (OrderID, FooditemID, quantity)
+    VALUES (oid, fid, qty);
+END$$
 
 DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE InsertOrderDetail
-    @OrderID VARCHAR(10),
-    @FooditemID VARCHAR(10),
-    @Quantity INT
-AS
+CREATE PROCEDURE GetOrdersByStudentID(
+    IN sid VARCHAR(10)
+)
 BEGIN
-    INSERT INTO orderdetails (OrderID, FooditemID, Quantity)
-    VALUES (@OrderID, @FooditemID, @Quantity);
-END;
+    SELECT 
+        o.OrderID,
+        o.Order_date
+    FROM 
+        foodorder o
+    WHERE 
+        o.ST_ID = sid;
+END$$
 
 DELIMITER ;
+
+CALL InsertOrderDetail('O001', 'F005', 3);
+CALL GetOrdersByStudentID('21456');
