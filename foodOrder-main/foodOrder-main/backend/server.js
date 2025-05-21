@@ -15,9 +15,8 @@ app.use("/api/shops", shopRoutes);
 app.use("/api/foods", foodRoutes);
 
 (async () => {
-  await connectToDB(); // ✅ wait for DB to connect
-
+  await connectToDB();
   app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+    console.log(`🚀 Server started on port ${PORT}`);
   });
 })();

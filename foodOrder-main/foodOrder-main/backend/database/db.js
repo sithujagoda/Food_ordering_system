@@ -7,14 +7,15 @@ const connectToDB = async () => {
     foodOrderDB = await mysql.createConnection({
       host: "localhost",
       user: "root",
-      password: "sihan1234",
-      database: "food_order",
+      password: "root",
+      database: "food_order", 
     });
-
-    console.log("MySQL connected successfully!");
+    console.log(" MySQL connected successfully!");
   } catch (error) {
-    console.log("MySQL connection failed:", error.message);
+    console.log(" MySQL connection failed:", error.message);
   }
 };
 
-module.exports = { connectToDB, getDB: () => foodOrderDB };
+const getDB = () => foodOrderDB;
+
+module.exports = { connectToDB, getDB };
